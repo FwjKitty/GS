@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="GS"
+  id="myeclipse.1412934921111"
+  context-root="/GS"
+  j2ee-spec="5.0"
+  archive="GS.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

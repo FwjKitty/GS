@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddUser</servlet-name>
+    <servlet-class>servlet.users.AddUser</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminLogin</servlet-name>
+    <servlet-class>servlet.admin.AdminLogin</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddNotice</servlet-name>
+    <servlet-class>servlet.notices.AddNotice</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteNotice</servlet-name>
+    <servlet-class>servlet.notices.DeleteNotice</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteUser</servlet-name>
+    <servlet-class>servlet.users.DeleteUser</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateNotice</servlet-name>
+    <servlet-class>servlet.notices.UpdateNotice</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryByUn</servlet-name>
+    <servlet-class>servlet.users.QueryByUn</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateUser</servlet-name>
+    <servlet-class>servlet.users.UpdateUser</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryByTitle</servlet-name>
+    <servlet-class>servlet.notices.QueryByTitle</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddResource</servlet-name>
+    <servlet-class>servlet.resource.AddResource</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteResource</servlet-name>
+    <servlet-class>servlet.resource.DeleteResource</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryByName</servlet-name>
+    <servlet-class>servlet.resource.QueryByName</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateResource</servlet-name>
+    <servlet-class>servlet.resource.UpdateResource</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Add_Question</servlet-name>
+    <servlet-class>servlet.questions.Add_Question</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteQuestion</servlet-name>
+    <servlet-class>servlet.questions.DeleteQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateQuestion</servlet-name>
+    <servlet-class>servlet.questions.UpdateQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryById</servlet-name>
+    <servlet-class>servlet.questions.QueryById</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SendMail</servlet-name>
+    <servlet-class>servlet.mail.SendMail</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Valcode</servlet-name>
+    <servlet-class>servlet.code.Valcode</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Checkcode</servlet-name>
+    <servlet-class>servlet.code.Checkcode</servlet-class>
+  </servlet>
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>AddUser</servlet-name>
+    <url-pattern>/AddUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminLogin</servlet-name>
+    <url-pattern>/AdminLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddResource</servlet-name>
+    <url-pattern>/AddResource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddNotice</servlet-name>
+    <url-pattern>/AddNotice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteNotice</servlet-name>
+    <url-pattern>/DeleteNotice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteResource</servlet-name>
+    <url-pattern>/DeleteResource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteUser</servlet-name>
+    <url-pattern>/DeleteUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateNotice</servlet-name>
+    <url-pattern>/UpdateNotice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryByUn</servlet-name>
+    <url-pattern>/QueryByUn</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateUser</servlet-name>
+    <url-pattern>/UpdateUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryByTitle</servlet-name>
+    <url-pattern>/QueryByTitle</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryByName</servlet-name>
+    <url-pattern>/QueryByName</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateResource</servlet-name>
+    <url-pattern>/UpdateResource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Add_Question</servlet-name>
+    <url-pattern>/Add_Question</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteQuestion</servlet-name>
+    <url-pattern>/DeleteQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateQuestion</servlet-name>
+    <url-pattern>/UpdateQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryById</servlet-name>
+    <url-pattern>/QueryById</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SendMail</servlet-name>
+    <url-pattern>/SendMail</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Valcode</servlet-name>
+    <url-pattern>/Valcode</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Checkcode</servlet-name>
+    <url-pattern>/Checkcode</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>jsp/main/index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
