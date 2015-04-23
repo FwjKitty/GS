@@ -4,198 +4,215 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>AddUser</servlet-name>
-    <servlet-class>servlet.users.AddUser</servlet-class>
+    <servlet-name>UserRegister</servlet-name>
+    <servlet-class>servlet.front.UserRegister</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Activation</servlet-name>
+    <servlet-class>servlet.front.Activation</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Valcode</servlet-name>
+    <servlet-class>servlet.front.code.Valcode</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Checkcode</servlet-name>
+    <servlet-class>servlet.front.code.Checkcode</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserLogin</servlet-name>
+    <servlet-class>servlet.front.UserLogin</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Main</servlet-name>
+    <servlet-class>servlet.front.main.Main</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>AdminLogin</servlet-name>
     <servlet-class>servlet.admin.AdminLogin</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>AddNotice</servlet-name>
-    <servlet-class>servlet.notices.AddNotice</servlet-class>
+    <servlet-name>AddDescription</servlet-name>
+    <servlet-class>servlet.admin.description.AddDescription</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>DeleteNotice</servlet-name>
-    <servlet-class>servlet.notices.DeleteNotice</servlet-class>
+    <servlet-name>FindAllDescription</servlet-name>
+    <servlet-class>servlet.admin.description.FindAllDescription</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>DeleteUser</servlet-name>
-    <servlet-class>servlet.users.DeleteUser</servlet-class>
+    <servlet-name>UpdateDescription</servlet-name>
+    <servlet-class>servlet.admin.description.UpdateDescription</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>UpdateNotice</servlet-name>
-    <servlet-class>servlet.notices.UpdateNotice</servlet-class>
+    <servlet-name>FindDescription</servlet-name>
+    <servlet-class>servlet.admin.description.FindDescription</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>QueryByUn</servlet-name>
-    <servlet-class>servlet.users.QueryByUn</servlet-class>
+    <servlet-name>DelDescription</servlet-name>
+    <servlet-class>servlet.admin.description.DelDescription</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddGuideCourse</servlet-name>
+    <servlet-class>servlet.admin.guideCourse.AddGuideCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindAllGuideCourse</servlet-name>
+    <servlet-class>servlet.admin.guideCourse.FindAllGuideCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateGuideCourse</servlet-name>
+    <servlet-class>servlet.admin.guideCourse.UpdateGuideCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindGuideCourse</servlet-name>
+    <servlet-class>servlet.admin.guideCourse.FindGuideCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DelGuideCourse</servlet-name>
+    <servlet-class>servlet.admin.guideCourse.DelGuideCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindAllUser</servlet-name>
+    <servlet-class>servlet.admin.users.FindAllUser</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>UpdateUser</servlet-name>
-    <servlet-class>servlet.users.UpdateUser</servlet-class>
+    <servlet-class>servlet.admin.users.UpdateUser</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>QueryByTitle</servlet-name>
-    <servlet-class>servlet.notices.QueryByTitle</servlet-class>
+    <servlet-name>FindUser</servlet-name>
+    <servlet-class>servlet.admin.users.FindUser</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>AddResource</servlet-name>
-    <servlet-class>servlet.resource.AddResource</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>DeleteResource</servlet-name>
-    <servlet-class>servlet.resource.DeleteResource</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>QueryByName</servlet-name>
-    <servlet-class>servlet.resource.QueryByName</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>UpdateResource</servlet-name>
-    <servlet-class>servlet.resource.UpdateResource</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>Add_Question</servlet-name>
-    <servlet-class>servlet.questions.Add_Question</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>DeleteQuestion</servlet-name>
-    <servlet-class>servlet.questions.DeleteQuestion</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>UpdateQuestion</servlet-name>
-    <servlet-class>servlet.questions.UpdateQuestion</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>QueryById</servlet-name>
-    <servlet-class>servlet.questions.QueryById</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>SendMail</servlet-name>
-    <servlet-class>servlet.mail.SendMail</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>Valcode</servlet-name>
-    <servlet-class>servlet.code.Valcode</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>Checkcode</servlet-name>
-    <servlet-class>servlet.code.Checkcode</servlet-class>
-  </servlet>
-
-
-
-
-  <servlet-mapping>
     <servlet-name>AddUser</servlet-name>
-    <url-pattern>/AddUser</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>AdminLogin</servlet-name>
-    <url-pattern>/AdminLogin</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>AddResource</servlet-name>
-    <url-pattern>/AddResource</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
+    <servlet-class>servlet.admin.users.AddUser</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DelUser</servlet-name>
+    <servlet-class>servlet.admin.users.DelUser</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindAllNotice</servlet-name>
+    <servlet-class>servlet.admin.notices.FindAllNotice</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>AddNotice</servlet-name>
-    <url-pattern>/AddNotice</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DeleteNotice</servlet-name>
-    <url-pattern>/DeleteNotice</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DeleteResource</servlet-name>
-    <url-pattern>/DeleteResource</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DeleteUser</servlet-name>
-    <url-pattern>/DeleteUser</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
+    <servlet-class>servlet.admin.notices.AddNotice</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditNotice</servlet-name>
+    <servlet-class>servlet.admin.notices.EditNotice</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindNotice</servlet-name>
+    <servlet-class>servlet.admin.notices.FindNotice</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>UpdateNotice</servlet-name>
-    <url-pattern>/UpdateNotice</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>QueryByUn</servlet-name>
-    <url-pattern>/QueryByUn</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>UpdateUser</servlet-name>
-    <url-pattern>/UpdateUser</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>QueryByTitle</servlet-name>
-    <url-pattern>/QueryByTitle</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>QueryByName</servlet-name>
-    <url-pattern>/QueryByName</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>UpdateResource</servlet-name>
-    <url-pattern>/UpdateResource</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>Add_Question</servlet-name>
-    <url-pattern>/Add_Question</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DeleteQuestion</servlet-name>
-    <url-pattern>/DeleteQuestion</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
+    <servlet-class>servlet.admin.notices.UpdateNotice</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DelNotice</servlet-name>
+    <servlet-class>servlet.admin.notices.DelNotice</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindAllQuestion</servlet-name>
+    <servlet-class>servlet.admin.questions.FindAllQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddQuestion</servlet-name>
+    <servlet-class>servlet.admin.questions.AddQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindQuestion</servlet-name>
+    <servlet-class>servlet.admin.questions.FindQuestion</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>UpdateQuestion</servlet-name>
-    <url-pattern>/UpdateQuestion</url-pattern>
+    <servlet-class>servlet.admin.questions.UpdateQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DelQuestion</servlet-name>
+    <servlet-class>servlet.admin.questions.DelQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindAllSource</servlet-name>
+    <servlet-class>servlet.admin.source.FindAllSource</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindSource</servlet-name>
+    <servlet-class>servlet.admin.source.FindSource</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateSource</servlet-name>
+    <servlet-class>servlet.admin.source.UpdateSource</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddSource</servlet-name>
+    <servlet-class>servlet.admin.source.AddSource</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DelSource</servlet-name>
+    <servlet-class>servlet.admin.source.DelSource</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindAllCourse</servlet-name>
+    <servlet-class>servlet.admin.course.FindAllCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindCourse</servlet-name>
+    <servlet-class>servlet.admin.course.FindCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateCourse</servlet-name>
+    <servlet-class>servlet.admin.course.UpdateCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddCourse</servlet-name>
+    <servlet-class>servlet.admin.course.AddCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DelCourse</servlet-name>
+    <servlet-class>servlet.admin.course.DelCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserGetAllCourse</servlet-name>
+    <servlet-class>servlet.front.courses.UserGetAllCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserGetAllSource</servlet-name>
+    <servlet-class>servlet.front.sources.UserGetAllSource</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserGetAllQuestion</servlet-name>
+    <servlet-class>servlet.front.questions.UserGetAllQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserGetPerson</servlet-name>
+    <servlet-class>servlet.front.users.UserGetPerson</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Exit</servlet-name>
+    <servlet-class>servlet.front.Exit</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserGetAllGuideCourse</servlet-name>
+    <servlet-class>servlet.front.guideCourse.UserGetAllGuideCourse</servlet-class>
+  </servlet>
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>UserRegister</servlet-name>
+    <url-pattern>/UserRegister</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>QueryById</servlet-name>
-    <url-pattern>/QueryById</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SendMail</servlet-name>
-    <url-pattern>/SendMail</url-pattern>
+    <servlet-name>Activation</servlet-name>
+    <url-pattern>/Activation</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Valcode</servlet-name>
@@ -205,8 +222,187 @@
     <servlet-name>Checkcode</servlet-name>
     <url-pattern>/Checkcode</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+    <servlet-name>UserLogin</servlet-name>
+    <url-pattern>/UserLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Main</servlet-name>
+    <url-pattern>/Main</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminLogin</servlet-name>
+    <url-pattern>/AdminLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddDescription</servlet-name>
+    <url-pattern>/AddDescription</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindAllDescription</servlet-name>
+    <url-pattern>/FindAllDescription</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateDescription</servlet-name>
+    <url-pattern>/UpdateDescription</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindDescription</servlet-name>
+    <url-pattern>/FindDescription</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelDescription</servlet-name>
+    <url-pattern>/DelDescription</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddGuideCourse</servlet-name>
+    <url-pattern>/AddGuideCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindAllGuideCourse</servlet-name>
+    <url-pattern>/FindAllGuideCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateGuideCourse</servlet-name>
+    <url-pattern>/UpdateGuideCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindGuideCourse</servlet-name>
+    <url-pattern>/FindGuideCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelGuideCourse</servlet-name>
+    <url-pattern>/DelGuideCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindAllUser</servlet-name>
+    <url-pattern>/FindAllUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindUser</servlet-name>
+    <url-pattern>/FindUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddUser</servlet-name>
+    <url-pattern>/AddUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateUser</servlet-name>
+    <url-pattern>/UpdateUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelUser</servlet-name>
+    <url-pattern>/DelUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindAllNotice</servlet-name>
+    <url-pattern>/FindAllNotice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddNotice</servlet-name>
+    <url-pattern>/AddNotice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditNotice</servlet-name>
+    <url-pattern>/EditNotice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindNotice</servlet-name>
+    <url-pattern>/FindNotice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateNotice</servlet-name>
+    <url-pattern>/UpdateNotice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelNotice</servlet-name>
+    <url-pattern>/DelNotice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindAllQuestion</servlet-name>
+    <url-pattern>/FindAllQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddQuestion</servlet-name>
+    <url-pattern>/AddQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindQuestion</servlet-name>
+    <url-pattern>/FindQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateQuestion</servlet-name>
+    <url-pattern>/UpdateQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelQuestion</servlet-name>
+    <url-pattern>/DelQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindAllSource</servlet-name>
+    <url-pattern>/FindAllSource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindSource</servlet-name>
+    <url-pattern>/FindSource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateSource</servlet-name>
+    <url-pattern>/UpdateSource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddSource</servlet-name>
+    <url-pattern>/AddSource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelSource</servlet-name>
+    <url-pattern>/DelSource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindAllCourse</servlet-name>
+    <url-pattern>/FindAllCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindCourse</servlet-name>
+    <url-pattern>/FindCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateCourse</servlet-name>
+    <url-pattern>/UpdateCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddCourse</servlet-name>
+    <url-pattern>/AddCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelCourse</servlet-name>
+    <url-pattern>/DelCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserGetAllCourse</servlet-name>
+    <url-pattern>/UserGetAllCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserGetAllSource</servlet-name>
+    <url-pattern>/UserGetAllSource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserGetAllQuestion</servlet-name>
+    <url-pattern>/UserGetAllQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserGetPerson</servlet-name>
+    <url-pattern>/UserGetPerson</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Exit</servlet-name>
+    <url-pattern>/Exit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserGetAllGuideCourse</servlet-name>
+    <url-pattern>/UserGetAllGuideCourse</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>jsp/main/index.jsp</welcome-file>
+    <welcome-file>Main</welcome-file>
   </welcome-file-list>
 </web-app>

@@ -9,7 +9,6 @@ public class Questions {
 	private String un;
 	private String admin;
 	private Date time;
-	private String value;
 	
 	public int getId() {
 		return id;
@@ -46,11 +45,5 @@ public class Questions {
 	}
 	public void setTime(Date time) {
 		this.time = time;
-	}
-	public String getValue() {
-		return value;
-	}
-	public void setValue(String value) {
-		this.value = value;
 	}
 }

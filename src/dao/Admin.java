@@ -23,9 +23,10 @@ public class Admin {
 				admin.setPw(rs.getString("pw"));
 				admin.setValue(rs.getString("value"));
 			}
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
 		}
 		return admin;
 	}

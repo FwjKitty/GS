@@ -29,6 +29,8 @@ public class Question {
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
 		}
 		return result;
 	}
@@ -43,16 +45,19 @@ public class Question {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
 		}
 		return result;
 	}
 	
-	public List<Questions> query(){
+	public static List<Questions> getPageResult(int page, int pageSize){
 		Connection conn = ConnectionGS.getConnection();
+		int totalPage = pageSize * (page - 1);
 		List<Questions> list_question = new ArrayList<Questions>();
 		try {
 			Statement cs = conn.createStatement();
-			ResultSet rs = cs.executeQuery("select * from question");
+			ResultSet rs = cs.executeQuery("select * from question order by time desc limit "+totalPage+","+pageSize);
 			
 			while(rs.next()){
 				Questions question = new Questions();
@@ -67,11 +72,32 @@ public class Question {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
 		}
 		return list_question;
 	}
 	
-	public Questions query(int id){
+	public static int getCount() {
+		Connection conn = ConnectionGS.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement("select count(*) from question");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
+		}
+		return result;
+	}
+	
+	public Questions queryById(int id){
 		Questions question = new Questions();
 		Connection conn = ConnectionGS.getConnection();
 		
@@ -89,11 +115,13 @@ public class Question {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
 		}
 		return question;
 	}
 	
-	public List<Questions> query(String un){
+	public static List<Questions> queryByUn(String un){
 		Connection conn = ConnectionGS.getConnection();
 		List<Questions> list_question = new ArrayList<Questions>();
 		try {
@@ -113,11 +141,13 @@ public class Question {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
 		}
 		return list_question;
 	}
 	
-	public int update(Questions question,int id){
+	public static int update(Questions question){
 		int result = 0;
 		Connection conn = ConnectionGS.getConnection();
 		
@@ -129,11 +159,13 @@ public class Question {
 			ps.setString(3, question.getUn());
 			ps.setString(4, question.getAdmin());
 			ps.setDate(5, question.getTime());
-			ps.setInt(6, id);
+			ps.setInt(6, question.getId());
 			
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
 		}
 		return result;
 	}

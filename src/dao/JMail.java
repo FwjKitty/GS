@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Properties;
 
-import javax.mail.MessagingException;
 import javax.mail.Session;
 
 import cn.itcast.mail.Mail;
@@ -35,18 +34,16 @@ public class JMail {
 		String to = un;
 		String subject = pro.getProperty("subject");
 		//MessageFormat.format方法会把第一个参数中的"{0}"(即占位符),使用第二个参数来代替
-		//例如MessageFormat.format("你好{0},你{1}!","剑名","去死吧");
+		//例如MessageFormat.format("你好{0},你{1}!","asd1","asd11");
+		//后面四个参数分别代表ip、端口port、注册的用户名和密码
 		String content = MessageFormat.format(pro.getProperty("content"),ip,String.valueOf(port),un,pw);
 		Mail mail = new Mail(from, to, subject, content);
 		/*
-		 * 
 		 * 发送邮件
 		 */
 		try {
 			MailUtils.send(session, mail);
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}

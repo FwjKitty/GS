@@ -9,18 +9,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Admin;
-import dao.Notice;
-import dao.Question;
-import dao.User;
-import dao.Resource;
+import dao.Description;
 
 import beans.Admins;
-import beans.Notices;
-import beans.Questions;
-import beans.Users;
-import beans.Resources;
+import beans.Descriptions;
 
 @SuppressWarnings("serial")
 public class AdminLogin extends HttpServlet {
@@ -53,52 +48,12 @@ public class AdminLogin extends HttpServlet {
 		 */
 		if(pw.equals(admin.getPw())){
 			if("1".equals(value)&&"1".equals(admin.getValue())){
-				List<Notices> list_notice = new Notice().select();
-				List<Users> list_user = new User().select();
-				List<Resources> list_mysql_course = new Resource().select("mysql_course");
-				List<Resources> list_mysql_source = new Resource().select("mysql_source");
-				List<Resources> list_sqlserver_course = new Resource().select("sqlserver_course");
-				List<Resources> list_sqlserver_source = new Resource().select("sqlserver_source");
-				List<Resources> list_oracle_course = new Resource().select("oracle_course");
-				List<Resources> list_oracle_source = new Resource().select("oracle_source");
-				//List<Questions> list_question = new Question().query();
-				
-				request.setAttribute("admin", admin);
-				request.setAttribute("list_notice", list_notice);
-				request.setAttribute("list_user", list_user);
-				request.setAttribute("list_mysql_course", list_mysql_course);
-				request.setAttribute("list_mysql_source", list_mysql_source);
-				request.setAttribute("list_sqlserver_course", list_sqlserver_course);
-				request.setAttribute("list_sqlserver_source", list_sqlserver_source);
-				request.setAttribute("list_oracle_course", list_oracle_course);
-				request.setAttribute("list_oracle_source", list_oracle_source);
-				//request.setAttribute("list_question", list_question);
-				
-				RequestDispatcher rd = request.getRequestDispatcher("jsp/admin/admin.jsp");
+				request.getSession().setAttribute("un", admin.getUn());
+				RequestDispatcher rd = request.getRequestDispatcher("admin/teacher.jsp");
 				rd.forward(request, response);
 			}else if("2".equals(value)&&"2".equals(admin.getValue())){
-				List<Notices> list_notice = new Notice().select();
-				List<Users> list_user = new User().select();
-				List<Resources> list_mysql_course = new Resource().select("mysql_course");
-				List<Resources> list_mysql_source = new Resource().select("mysql_source");
-				List<Resources> list_sqlserver_course = new Resource().select("sqlserver_course");
-				List<Resources> list_sqlserver_source = new Resource().select("sqlserver_source");
-				List<Resources> list_oracle_course = new Resource().select("oracle_course");
-				List<Resources> list_oracle_source = new Resource().select("oracle_source");
-				//List<Questions> list_question = new Question().query();
-				
-				request.setAttribute("admin", admin);
-				request.setAttribute("list_notice", list_notice);
-				request.setAttribute("list_user", list_user);
-				request.setAttribute("list_mysql_course", list_mysql_course);
-				request.setAttribute("list_mysql_source", list_mysql_source);
-				request.setAttribute("list_sqlserver_course", list_sqlserver_course);
-				request.setAttribute("list_sqlserver_source", list_sqlserver_source);
-				request.setAttribute("list_oracle_course", list_oracle_course);
-				request.setAttribute("list_oracle_source", list_oracle_source);
-				//request.setAttribute("list_question", list_question);
-				
-				RequestDispatcher rd = request.getRequestDispatcher("jsp/admin/admin.jsp");
+				request.getSession().setAttribute("un", admin.getUn());
+				RequestDispatcher rd = request.getRequestDispatcher("admin/admin.jsp");
 				rd.forward(request, response);
 			}else{
 				out.println("<script language='javascript'>alert('登录数据出错！');history.go(-1);</script>");
