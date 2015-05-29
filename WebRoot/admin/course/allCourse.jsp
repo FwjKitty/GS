@@ -29,9 +29,8 @@ String kind = (String)request.getAttribute("kind");
 <html>
   <head>
     <base href="<%=basePath%>">
-    
     <title></title>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -41,7 +40,6 @@ String kind = (String)request.getAttribute("kind");
     <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" type="text/css" href="admin/Css/style.css" />
     <script type="text/javascript" src="admin/Js/jquery.js"></script>
-    <script type="text/javascript" src="admin/Js/jquery.sorted.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="admin/Js/ckform.js"></script>
     <script type="text/javascript" src="admin/Js/common.js"></script>
@@ -75,9 +73,9 @@ String kind = (String)request.getAttribute("kind");
     		<tr>
         		<th>资源id</th>
 		        <th>资源路径</th>
-		        <th>呈现图片</th>
 		        <th>管理员名称</th>
 		        <th>时间</th>
+		        <th>所属总体课程id</th>
 		        <th>操作</th>
     		</tr>
     	</thead>
@@ -87,11 +85,11 @@ String kind = (String)request.getAttribute("kind");
     			course = list_course.get(i);
     	%>
 	    <tr>
-           	<td><%=i+1 %></td>
+           	<td><%=course.getId() %></td>
             <td><%=course.getFileName() %></td>
-            <td><%=course.getImage() %></td>
             <td><%=course.getUn() %></td>
             <td><%=course.getTime() %></td>
+            <td><%=course.getCourse_id() %></td>
             <td>
                 <a href="FindCourse?id=<%=course.getId() %>&kind=<%=kind %>">编辑</a>
                 <a href="DelCourse?id=<%=course.getId() %>&kind=<%=kind %>">删除</a>

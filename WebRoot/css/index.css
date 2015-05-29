@@ -29,7 +29,6 @@ color:#000;
 text-decoration:none;
 }
 .wt{
-height:200px;
 background:#ffffff;
 transition:background 2s;
 }
@@ -67,4 +66,13 @@ background:#0088CC;
 .nav_buttom{
 margin:0 auto;
 border-right:1px solid #999999;
+}
+
+/* 评论 */
+.con_jj{
+margin:2% 0;
+}
+.media-object{
+width: 64px; 
+height: 64px;
 }

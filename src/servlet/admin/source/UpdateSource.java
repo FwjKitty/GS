@@ -39,6 +39,7 @@ public class UpdateSource extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
+		String title = "";
 		String filename = null;
 		// 设置保存上传文件的目录
 		String uploadDir = getServletContext().getRealPath("/file/source");
@@ -87,22 +88,19 @@ public class UpdateSource extends HttpServlet {
 				request.setAttribute(fieldName, content1);
 			} else {
 				try {
-					String pathSrc = fi.getName();
+					title = fi.getName();
 					//如果用户没有在FORM表单的文件字段中选择任何文件， 那么忽略对该字段项的处理
-					if (pathSrc.trim().equals("")) {
+					if (title.equals("")) {
 						continue;
 					}
 					// 对上传的图片进行重新命名
-					String fileName = fi.getName();
-					String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1);
+					String fileExt = title.substring(title.lastIndexOf(".") + 1);
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmssSSS");
 					String middlename = sdf.format(new Date(System.currentTimeMillis()));
 					String lastname = Math.round(Math.random() * 1000) + "";
 					String localFileName = middlename + lastname + "." + fileExt;
 					fi.write(new File(uploadDir, localFileName));
 					filename = localFileName;
-					String fieldName = fi.getFieldName();
-					request.setAttribute(fieldName, fileName);
 				} catch (Exception e) {
 					out.println("<script language='javascript'>alert('修改失败!请按要求修改');window.location.href='GetClubs?id='"+(String) request.getAttribute("id")+"';</script>");
 					return;
@@ -112,6 +110,7 @@ public class UpdateSource extends HttpServlet {
 				}
 			}
 		}
+		Sources source = new Sources();
 		if(filename == null){
 			filename = (String) request.getAttribute("filename");
 		}else{
@@ -119,6 +118,7 @@ public class UpdateSource extends HttpServlet {
 			String path1 = getServletContext().getRealPath(path);
 			File file1 = new File(path1);
 			filename = "file\\source\\"+filename;
+			source.setTitle(title);
 			if (file1.exists()) {
 				file1.delete();
 				System.out.println("删除资源文件完成！ ");
@@ -128,9 +128,9 @@ public class UpdateSource extends HttpServlet {
 		
 		String id = (String) request.getAttribute("id");
 		String kind = (String) request.getAttribute("kind");
-		Sources source = new Sources();
 		source.setFileName(filename);
-		source.setUn((String) request.getAttribute("un"));
+		source.setUn((String) request.getSession().getAttribute("un"));
+		source.setCourse_id(Integer.parseInt((String)request.getAttribute("course_id")));
 		source.setTime(new Date(System.currentTimeMillis()));
 		int result = Source.update(source, Integer.parseInt(id), kind);
 		if(result != 0){

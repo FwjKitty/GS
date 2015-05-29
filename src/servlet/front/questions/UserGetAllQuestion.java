@@ -31,12 +31,15 @@ public class UserGetAllQuestion extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		if(null == request.getSession().getAttribute("user")){
-			request.getRequestDispatcher("Main").forward(request, response);
+			response.sendRedirect("Main");
 		}else{
 			int page = Integer.parseInt(request.getParameter("page"));
+			int count = Question.getCount();
 			List<Questions> list_question = new ArrayList<Questions>();
 			list_question = Question.getPageResult(page, DefaultData.pageSize);
 			request.setAttribute("list_question", list_question);
+			request.setAttribute("count", String.valueOf(count));
+			request.setAttribute("page", String.valueOf(page));
 			request.getRequestDispatcher("front/question/showQuestion.jsp").forward(request, response);
 		}
 	}

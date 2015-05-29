@@ -9,6 +9,8 @@ public class Users {
 	private String head;
 	private String name;
 	private String contact;
+	private String education;
+	private String sex;
 	private String introduction;
 	private Date time;
 	
@@ -35,6 +37,18 @@ public class Users {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getEducation() {
+		return education;
+	}
+	public void setEducation(String education) {
+		this.education = education;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	public String getContact() {
 		return contact;

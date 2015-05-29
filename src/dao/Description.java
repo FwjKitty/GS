@@ -44,7 +44,7 @@ public class Description {
 		List<Descriptions> list_description = new ArrayList<Descriptions>();
 		try {
 			Statement cs = conn.createStatement();
-			ResultSet rs = cs.executeQuery("select * from description order by id desc limit "+totalPage+","+pageSize);
+			ResultSet rs = cs.executeQuery("select * from description order by id asc limit "+totalPage+","+pageSize);
 			
 			while(rs.next()){
 				Descriptions description = new Descriptions();

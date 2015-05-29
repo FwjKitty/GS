@@ -27,7 +27,7 @@ public class DelQuestion extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		int result = new Question().delete(Integer.parseInt(request.getParameter("id")));
+		int result = Question.delete(Integer.parseInt(request.getParameter("id")));
 		if(result > 0){
 			response.sendRedirect("FindAllQuestion?page=1");
 		}else{

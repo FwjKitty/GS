@@ -39,5 +39,4 @@ public class FindAllUser extends HttpServlet {
 		request.setAttribute("count", String.valueOf(count));
 		request.getRequestDispatcher("admin/user/allUser.jsp").forward(request, response);
 	}
-
 }

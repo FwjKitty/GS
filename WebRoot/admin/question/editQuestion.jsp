@@ -16,9 +16,8 @@ if(un == null){
 <html>
   <head>
     <base href="<%=basePath%>">
-    
-    <title></title>
-    <meta charset="UTF-8">
+    <title>光数之家</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -28,7 +27,6 @@ if(un == null){
     <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" type="text/css" href="admin/Css/style.css" />
     <script type="text/javascript" src="admin/Js/jquery.js"></script>
-    <script type="text/javascript" src="admin/Js/jquery.sorted.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="admin/Js/ckform.js"></script>
     <script type="text/javascript" src="admin/Js/common.js"></script>
@@ -56,11 +54,11 @@ if(un == null){
 			<input type="hidden" name="id" value="<%=question.getId() %>"/>
 		    <tr>
 		        <td width="10%" class="tableleft">问题描述</td>
-		        <td><input type="text" name="question" value="<%=question.getQuestion() %>"/></td>
+		        <td><textarea name="question"><%=question.getQuestion() %></textarea></td>
 		    </tr>
 		    <tr>
 		        <td class="tableleft">问题解答</td>
-		        <td><input type="text" name="answer" value="<%=question.getAnswer() %>"/></td>
+		        <td><textarea name="answer"><%=question.getAnswer() %></textarea></td>
 		    </tr>
 		    <tr>
 		        <td class="tableleft">用户名称</td>

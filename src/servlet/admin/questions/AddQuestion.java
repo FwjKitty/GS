@@ -38,7 +38,7 @@ public class AddQuestion extends HttpServlet {
 		question.setAdmin((String) request.getParameter("admin"));
 		question.setTime(new Date(System.currentTimeMillis()));
 		
-		int result = new Question().add(question);
+		int result = Question.add(question);
 		
 		if(result != 0){
 			request.getRequestDispatcher("FindAllQuestion?page=1").forward(request, response);

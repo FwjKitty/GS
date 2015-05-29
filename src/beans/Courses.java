@@ -5,12 +5,12 @@ import java.sql.Date;
 public class Courses {
 	
 	private int id;
-	private String name;
+	private String title;
 	private String introduction;
 	private String fileName;
-	private String image;
 	private String un;
 	private Date time;
+	private int course_id;
 	
 	public int getId() {
 		return id;
@@ -18,11 +18,11 @@ public class Courses {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public String getIntroduction() {
 		return introduction;
@@ -36,12 +36,6 @@ public class Courses {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
 	public String getUn() {
 		return un;
 	}
@@ -53,5 +47,11 @@ public class Courses {
 	}
 	public void setTime(Date time) {
 		this.time = time;
+	}
+	public int getCourse_id() {
+		return course_id;
+	}
+	public void setCourse_id(int course_id) {
+		this.course_id = course_id;
 	}
 }

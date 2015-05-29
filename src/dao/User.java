@@ -15,46 +15,22 @@ import utils.ConnectionGS;
 
 public class User {
 	
-	public List<Users> select(){
-		Connection conn = ConnectionGS.getConnection();
-		List<Users> list_user = new ArrayList<Users>();
-		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery("select * from user order by time desc");
-			while(rs.next()){
-				Users user = new Users();
-				
-				user.setUn(rs.getString("un"));
-				user.setPw(rs.getString("pw"));
-				user.setHead(rs.getString("head"));
-				user.setName(rs.getString("name"));
-				user.setContact(rs.getString("contact"));
-				user.setIntroduction(rs.getString("introduction"));
-				user.setTime(rs.getDate("time"));
-				list_user.add(user);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionGS.close();
-		}
-		return list_user;
-	}
-	
 	public static int add(Users user){
 		Connection conn = ConnectionGS.getConnection();
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try{
-			pstmt = conn.prepareStatement("insert into user(un,pw,name,head,contact,introduction,time) values(?,?,?)");
+			pstmt = conn.prepareStatement("insert into user(un,pw,name,head,contact,education,sex,introduction,time) values(?,?,?,?,?,?,?,?,?)");
 			
 			pstmt.setString(1, user.getUn());
 			pstmt.setString(2, user.getPw());
-			pstmt.setString(1, user.getName());
-			pstmt.setString(2, user.getHead());
-			pstmt.setString(1, user.getContact());
-			pstmt.setString(2, user.getIntroduction());
-			pstmt.setDate(3, user.getTime());
+			pstmt.setString(3, user.getName());
+			pstmt.setString(4, user.getHead());
+			pstmt.setString(5, user.getContact());
+			pstmt.setString(6, user.getEducation());
+			pstmt.setString(7, user.getSex());
+			pstmt.setString(8, user.getIntroduction());
+			pstmt.setDate(9, user.getTime());
 			
 			result = pstmt.executeUpdate();
 		}catch(Exception e){
@@ -96,6 +72,8 @@ public class User {
 				user.setHead(rs.getString("head"));
 				user.setName(rs.getString("name"));
 				user.setIntroduction(rs.getString("introduction"));
+				user.setEducation(rs.getString("education"));
+				user.setSex(rs.getString("sex"));
 				user.setTime(rs.getDate("time"));
 			}
 		} catch (SQLException e) {
@@ -109,17 +87,44 @@ public class User {
 	public int update(String un,Users user){
 		int result = 0;
 		Connection conn = ConnectionGS.getConnection();
-		String sql = "update user set un=?,pw=?,head=?,name=?,contact=?,introduction=? where un=?";
+		String sql = "update user set un=?,pw=?,head=?,name=?,contact=?,education=?,sex=?,introduction=? where un=?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user.getUn());
+			pstmt.setString(2, user.getPw());
+			pstmt.setString(3, user.getHead());
+			pstmt.setString(4, user.getName());
+			pstmt.setString(5, user.getContact());
+			pstmt.setString(6, user.getEducation());
+			pstmt.setString(7, user.getSex());
+			pstmt.setString(8, user.getIntroduction());
+			pstmt.setString(9, un);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
+		}
+		return result;
+	}
+	
+	public static int update(Users user){
+		int result = 0;
+		Connection conn = ConnectionGS.getConnection();
+		String sql = "update user set head=?,name=?,contact=?,education=?,sex=?,introduction=? where un=?";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, user.getUn());
-			ps.setString(2, user.getPw());
-			ps.setString(3, user.getHead());
-			ps.setString(4, user.getName());
-			ps.setString(5, user.getContact());
+			ps.setString(1, user.getHead());
+			ps.setString(2, user.getName());
+			ps.setString(3, user.getContact());
+			ps.setString(4, user.getEducation());
+			ps.setString(5, user.getSex());
 			ps.setString(6, user.getIntroduction());
-			ps.setString(7, un);
+			ps.setString(7, user.getUn());
 			
 			result = ps.executeUpdate();
 			
@@ -140,8 +145,8 @@ public class User {
 	public static List<Users> getPageResult(int pageSize, int page) {
 		Connection conn = ConnectionGS.getConnection();
 		//当前页面中的第一条数据的number
-		int totalPage = pageSize * (page - 1) + 1;
-		String sql = "select * from user order by time desc limit " + totalPage + ","+ pageSize + "";
+		int totalPage = pageSize * (page - 1);
+		String sql = "select * from user order by id asc limit " + totalPage + ","+ pageSize + "";
 		List<Users> list = new ArrayList<Users>();
 		try {
 			Statement stmt = conn.createStatement();
@@ -154,6 +159,8 @@ public class User {
 				user.setHead(rs.getString("head"));
 				user.setName(rs.getString("name"));
 				user.setContact(rs.getString("contact"));
+				user.setEducation(rs.getString("education"));
+				user.setSex(rs.getString("sex"));
 				user.setIntroduction(rs.getString("introduction"));
 				user.setTime(rs.getDate("time"));
 				list.add(user);

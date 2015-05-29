@@ -28,9 +28,8 @@ int count = Integer.parseInt((String)request.getAttribute("count"));
 <html>
   <head>
     <base href="<%=basePath%>">
-    
     <title></title>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -40,7 +39,6 @@ int count = Integer.parseInt((String)request.getAttribute("count"));
     <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" type="text/css" href="admin/Css/style.css" />
     <script type="text/javascript" src="admin/Js/jquery.js"></script>
-    <script type="text/javascript" src="admin/Js/jquery.sorted.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="admin/Js/ckform.js"></script>
     <script type="text/javascript" src="admin/Js/common.js"></script>
@@ -73,10 +71,10 @@ int count = Integer.parseInt((String)request.getAttribute("count"));
     	<thead>
     		<tr>
         		<th>课程id</th>
-		        <th>课程名称</th>
+		        <th>课程名称(对应于'课程描述管理'下的'课程名称')</th>
 		        <th>课程描述</th>
 		        <th>图片</th>
-		        <th>介绍图片</th>
+		        <th>课程介绍</th>
 		        <th>操作</th>
     		</tr>
     	</thead>
@@ -86,7 +84,7 @@ int count = Integer.parseInt((String)request.getAttribute("count"));
     			guideCourse = list_guideCourse.get(i);
     	%>
 	    <tr>
-           	<td><%=i+1 %></td>
+           	<td><%=guideCourse.getId() %></td>
             <td><%=guideCourse.getName() %></td>
             <td><%=guideCourse.getTitle() %></td>
             <td><%=guideCourse.getImage() %></td>

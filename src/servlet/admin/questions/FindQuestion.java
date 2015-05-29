@@ -31,7 +31,7 @@ public class FindQuestion extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		int id = Integer.parseInt(request.getParameter("id"));
-		Questions question = new Question().queryById(id);
+		Questions question = Question.queryById(id);
 		
 		if(question != null){
 			request.setAttribute("question", question);

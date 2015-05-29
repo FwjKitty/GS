@@ -13,7 +13,7 @@ import beans.Questions;
 
 public class Question {
 	
-	public int add(Questions question){
+	public static int add(Questions question){
 		int result = 0;
 		Connection conn = ConnectionGS.getConnection();
 		
@@ -35,7 +35,7 @@ public class Question {
 		return result;
 	}
 	
-	public int delete(int id){
+	public static int delete(int id){
 		int result = 0;
 		Connection conn = ConnectionGS.getConnection();
 		
@@ -57,7 +57,7 @@ public class Question {
 		List<Questions> list_question = new ArrayList<Questions>();
 		try {
 			Statement cs = conn.createStatement();
-			ResultSet rs = cs.executeQuery("select * from question order by time desc limit "+totalPage+","+pageSize);
+			ResultSet rs = cs.executeQuery("select * from question order by id asc limit "+totalPage+","+pageSize);
 			
 			while(rs.next()){
 				Questions question = new Questions();
@@ -96,8 +96,24 @@ public class Question {
 		}
 		return result;
 	}
+	public static int getCountByUn(String un) {
+		Connection conn = ConnectionGS.getConnection();
+		int result = 0;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("select count(*) from question where un="+un);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
+		}
+		return result;
+	}
 	
-	public Questions queryById(int id){
+	public static Questions queryById(int id){
 		Questions question = new Questions();
 		Connection conn = ConnectionGS.getConnection();
 		
@@ -121,12 +137,13 @@ public class Question {
 		return question;
 	}
 	
-	public static List<Questions> queryByUn(String un){
+	public static List<Questions> queryByUn(String un, int page, int pageSize){
 		Connection conn = ConnectionGS.getConnection();
 		List<Questions> list_question = new ArrayList<Questions>();
+		int totalPage = pageSize * (page - 1);
 		try {
 			Statement cs = conn.createStatement();
-			ResultSet rs = cs.executeQuery("select * from question where un='" + un + "' order by id asc");
+			ResultSet rs = cs.executeQuery("select * from question where un='" + un + "' order by id asc limit "+totalPage+", "+pageSize);
 			
 			while(rs.next()){
 				Questions question = new Questions();
@@ -138,6 +155,30 @@ public class Question {
 				question.setTime(rs.getDate("time"));
 				
 				list_question.add(question);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
+		}
+		return list_question;
+	}
+	
+	public static List<Questions> queryByQuestion(String question, int page, int pageSize){
+		Connection conn = ConnectionGS.getConnection();
+		List<Questions> list_question = new ArrayList<Questions>();
+		int totalPage = pageSize * (page - 1);
+		try {
+			Statement cs = conn.createStatement();
+			ResultSet rs = cs.executeQuery("select * from question where question like '%" + question + "%' order by id asc limit "+totalPage+", "+pageSize);
+			while(rs.next()){
+				Questions question1 = new Questions();
+				question1.setId(rs.getInt("id"));
+				question1.setQuestion(rs.getString("question"));
+				question1.setUn(rs.getString("un"));
+				question1.setTime(rs.getDate("time"));
+				
+				list_question.add(question1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

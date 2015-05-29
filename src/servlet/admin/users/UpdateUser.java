@@ -107,7 +107,7 @@ public class UpdateUser extends HttpServlet {
 			}
 		}
 		
-		String un = (String) request.getAttribute("un");
+		String un = (String) request.getAttribute("un2");
 		Users user = new Users();
 		user.setUn((String) request.getAttribute("un"));
 		user.setPw((String) request.getAttribute("pw"));

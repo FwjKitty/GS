@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import utils.DefaultData;
-
 import dao.Course;
+import dao.Source;
 
 import beans.Courses;
+import beans.Sources;
+import beans.Users;
 
 @SuppressWarnings("serial")
 public class UserGetAllCourse extends HttpServlet {
@@ -31,20 +32,22 @@ public class UserGetAllCourse extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		
+		Users user = null;
+		user = (Users)request.getSession().getAttribute("user");
 		String kind = request.getParameter("kind");
-		int page = Integer.parseInt(request.getParameter("page"));
-		int count = Course.getCount(kind+"_course");
-		List<Courses> list_course = new ArrayList<Courses>();
-		list_course = Course.getPageResult(kind+"_course", page, DefaultData.pageSize);
-		request.setAttribute("list_course", list_course);
-		request.setAttribute("page", String.valueOf(page));
-		request.setAttribute("count", String.valueOf(count));
-		if(null == request.getSession().getAttribute("user")){
-			RequestDispatcher rd = request.getRequestDispatcher("front/course/showCourse.jsp");
-			rd.forward(request, response);
-		}else{
+		if(user != null){
+			int course_id = Integer.parseInt(request.getParameter("course_id"));
+			List<Courses> list_course = new ArrayList<Courses>();
+			List<Sources> list_source = new ArrayList<Sources>();
+			list_course = Course.queryByCourseId(course_id,kind+"_course");
+			list_source = Source.queryByCourseId(course_id, kind+"_source");
+			request.setAttribute("list_course", list_course);
+			request.setAttribute("list_source", list_source);
 			RequestDispatcher rd = request.getRequestDispatcher("front/course/showCourse_login.jsp");
 			rd.forward(request, response);
-		}	
+		}else{
+			RequestDispatcher rd = request.getRequestDispatcher("UserGetAllGuideCourse?page=1&name="+kind);
+			rd.forward(request, response);
+		}
 	}
 }

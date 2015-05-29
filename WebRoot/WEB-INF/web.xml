@@ -177,14 +177,6 @@
     <servlet-class>servlet.admin.course.DelCourse</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>UserGetAllCourse</servlet-name>
-    <servlet-class>servlet.front.courses.UserGetAllCourse</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>UserGetAllSource</servlet-name>
-    <servlet-class>servlet.front.sources.UserGetAllSource</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>UserGetAllQuestion</servlet-name>
     <servlet-class>servlet.front.questions.UserGetAllQuestion</servlet-class>
   </servlet>
@@ -197,9 +189,77 @@
     <servlet-class>servlet.front.Exit</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>UserGetAllGuideCourse</servlet-name>
-    <servlet-class>servlet.front.guideCourse.UserGetAllGuideCourse</servlet-class>
+    <servlet-name>UserUpdatePerson</servlet-name>
+    <servlet-class>servlet.front.users.UserUpdatePerson</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>UserGetQuestion</servlet-name>
+    <servlet-class>servlet.front.questions.UserGetQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindAllComment</servlet-name>
+    <servlet-class>servlet.admin.comment.FindAllComment</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindComment</servlet-name>
+    <servlet-class>servlet.admin.comment.FindComment</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddComment</servlet-name>
+    <servlet-class>servlet.admin.comment.AddComment</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateComment</servlet-name>
+    <servlet-class>servlet.admin.comment.UpdateComment</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DelComment</servlet-name>
+    <servlet-class>servlet.admin.comment.DelComment</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserAddComment</servlet-name>
+    <servlet-class>servlet.front.questions.UserAddComment</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserGetAllCourse</servlet-name>
+    <servlet-class>servlet.front.courses.UserGetAllCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserGetAllGuideCourse</servlet-name>
+    <servlet-class>servlet.front.courses.UserGetAllGuideCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserGetAllSource</servlet-name>
+    <servlet-class>servlet.front.sources.UserGetAllSource</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserAddSource</servlet-name>
+    <servlet-class>servlet.front.users.UserAddSource</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserDelSource</servlet-name>
+    <servlet-class>servlet.front.users.UserDelSource</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserDelQuestion</servlet-name>
+    <servlet-class>servlet.front.users.UserDelQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserDownload</servlet-name>
+    <servlet-class>servlet.front.UserDownload</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserAddQuestion</servlet-name>
+    <servlet-class>servlet.front.questions.UserAddQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SearchQuestion</servlet-name>
+    <servlet-class>servlet.front.questions.SearchQuestion</servlet-class>
+  </servlet>
+
+
+
+
 
 
 
@@ -379,14 +439,6 @@
     <url-pattern>/DelCourse</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>UserGetAllCourse</servlet-name>
-    <url-pattern>/UserGetAllCourse</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>UserGetAllSource</servlet-name>
-    <url-pattern>/UserGetAllSource</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>UserGetAllQuestion</servlet-name>
     <url-pattern>/UserGetAllQuestion</url-pattern>
   </servlet-mapping>
@@ -399,8 +451,72 @@
     <url-pattern>/Exit</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+    <servlet-name>UserUpdatePerson</servlet-name>
+    <url-pattern>/UserUpdatePerson</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserGetQuestion</servlet-name>
+    <url-pattern>/UserGetQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindAllComment</servlet-name>
+    <url-pattern>/FindAllComment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindComment</servlet-name>
+    <url-pattern>/FindComment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddComment</servlet-name>
+    <url-pattern>/AddComment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateComment</servlet-name>
+    <url-pattern>/UpdateComment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelComment</servlet-name>
+    <url-pattern>/DelComment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserAddComment</servlet-name>
+    <url-pattern>/UserAddComment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserGetAllCourse</servlet-name>
+    <url-pattern>/UserGetAllCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserGetAllSource</servlet-name>
+    <url-pattern>/UserGetAllSource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>UserGetAllGuideCourse</servlet-name>
     <url-pattern>/UserGetAllGuideCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserAddSource</servlet-name>
+    <url-pattern>/UserAddSource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserDelSource</servlet-name>
+    <url-pattern>/UserDelSource</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserDelQuestion</servlet-name>
+    <url-pattern>/UserDelQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserDownload</servlet-name>
+    <url-pattern>/UserDownload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserAddQuestion</servlet-name>
+    <url-pattern>/UserAddQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SearchQuestion</servlet-name>
+    <url-pattern>/SearchQuestion</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>Main</welcome-file>

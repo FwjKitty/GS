@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     <title>光束之家--后台登陆</title>
-	<meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<link href="css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="css/bootstrap-responsive.min.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="css/admin.css"/>

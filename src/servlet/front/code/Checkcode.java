@@ -22,6 +22,7 @@ public class Checkcode extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		response.setHeader("Cache-Control","no-cache");
+		
 		/*
 		 * 1.获取输入框中的验证码
 		 */

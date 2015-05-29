@@ -9,7 +9,7 @@ List<Descriptions> list_description = (List)request.getAttribute("list_descripti
 <html>
 <head>
 	<base href="<%=basePath%>">
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>光数之家</title>
 	<link href="css/bootstrap.css" rel="stylesheet">
@@ -61,7 +61,7 @@ List<Descriptions> list_description = (List)request.getAttribute("list_descripti
   			<h4>用户登录</h4>
   		</div>
   		<div class="modal-body">
-  			<form class="form-horizontal" action="UserLogin" method="post" id="form_login">
+  			<form class="form-horizontal" action="UserLogin" onsubmit="RSALogin()" method="post" id="form_login">
     			<div class="control-group">
       				<label class="control-label" ><strong>用户名</strong></label>
       				<div class="controls">
@@ -97,23 +97,23 @@ List<Descriptions> list_description = (List)request.getAttribute("list_descripti
   			<h4>用户注册</h4>
   		</div>
   		<div class="modal-body">
-  			<form class="form-horizontal" action="UserRegister" method="post" id="form_register">
+  			<form class="form-horizontal" action="UserRegister" onsubmit="return RSARegister()" method="post" id="form_register">
     			<div class="control-group">
       				<label class="control-label" ><strong>邮箱帐号</strong></label>
       				<div class="controls">
-        				<input type="text" placeholder="请在此输入您的E-Mail" name="un">
+        				<input type="text" placeholder="请在此输入您的E-Mail" name="un" value="">
       				</div>
     			</div>
     			<div class="control-group">
       				<label class="control-label" ><strong>密码</strong></label>
       				<div class="controls" >
-        				<input type="password" placeholder="请在此输入您的密码" name="pw">
+        				<input type="password" placeholder="请在此输入您的密码" name="pw" value="">
       				</div>
     			</div>
     			<div class="control-group">
       				<label class="control-label" ><strong>确认密码</strong></label>
       				<div class="controls" >
-        				<input type="password" placeholder="请再次确认您的密码" name="pw2">
+        				<input type="password" placeholder="请再次确认您的密码" name="pw2" value="">
       				</div>
     			</div>
     			<div class="control-group">
@@ -183,16 +183,65 @@ List<Descriptions> list_description = (List)request.getAttribute("list_descripti
 	<!-- footer end -->
 	<script src="js/jquery-2.1.1.min.js"></script> 
 	<script src="js/bootstrap.js"></script>
-	<script>
+	<!-- RSA -->
+	<script type="text/javascript" src="js/RSA/RSA.js"></script>
+	<script type="text/javascript" src="js/RSA/BigInt.js"></script>
+	<script type="text/javascript" src="js/RSA/Barrett.js"></script>
+	<script type="text/javascript">
 	<!--
 	$("#registerButton").click(function(){
-		$('#imgVcodeRegister').src=$('#imgVcodeRegister').src;
-		alert($('#imgVcodeRegister').src);
 		$("#errorRegister").load("Checkcode",{vcode:$("#vcodeRegister").val(),operation:"register"});
-		});
+	});
 	$("#loginButton").click(function(){
 		$("#errorLogin").load("Checkcode",{vcode:$("#vcodeLogin").val(),operation:"login"});
-		});
+	});
+	var key ;
+	function RSALogin(){
+		var login = document.getElementById("form_login");
+		if (login.un.value == "") {
+			alert("帐号不能为空");
+			login.un.focus();
+			return false;
+		} else if (login.pw.value == "") {
+			alert("密码不能为空");
+			login.pw.focus();
+			return false;
+		} else {
+			bodyRSA();
+			login.pw.value = encryptedString(key, encodeURIComponent(login.pw.value));
+			return true;
+		}
+	}
+	function RSARegister(){
+		var register = document.getElementById("form_register");
+		if (register.un.value == "") {
+			alert("帐号不能为空");
+			register.un.focus();
+			return false;
+		} else if (register.pw.value == "") {
+			alert("密码不能为空");
+			register.pw.focus();
+			return false;
+		} else if (register.pw2.value == "") {
+			alert("密码不能为空");
+			register.pw2.focus();
+			return false;
+		} else {
+			if(register.pw.value.match("[[0-9a-zA-Z$#@^&]+]{6-20}")){
+				if(register.pw.value == register.pw2.value){
+					bodyRSA();
+					register.pw.value = encryptedString(key, encodeURIComponent(register.pw.value));
+					return true;
+				}else{
+					alert("密码不一致");
+					return false;
+				}
+			}else{
+				alert("密码格式错误");
+				return false;
+			}
+		}
+	}
 	-->
 	</script>
 </body>

@@ -16,9 +16,8 @@ if(un == null){
 <html>
   <head>
     <base href="<%=basePath%>">
-    
     <title></title>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -28,7 +27,6 @@ if(un == null){
     <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" type="text/css" href="admin/Css/style.css" />
     <script type="text/javascript" src="admin/Js/jquery.js"></script>
-    <script type="text/javascript" src="admin/Js/jquery.sorted.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="admin/Js/ckform.js"></script>
     <script type="text/javascript" src="admin/Js/common.js"></script>
@@ -56,7 +54,7 @@ if(un == null){
 		<input type="hidden" name="kind" value="<%=kind %>" />
 			<tr>
 		        <td class="tableleft">课程标题</td>
-		        <td><input type="text" name="name"/></td>
+		        <td><input type="text" name="title"/></td>
 		    </tr>
 		    <tr>
 		        <td class="tableleft">课程简介</td>
@@ -67,12 +65,12 @@ if(un == null){
 		        <td><input type="file" name="filename"/></td>
 		    </tr>
 		    <tr>
-		        <td width="10%" class="tableleft">呈现图片</td>
-		        <td><input type="file" name="image"/></td>
-		    </tr>
-		    <tr>
 		        <td class="tableleft">用户名称</td>
 		        <td><input type="text" name="un"/></td>
+		    </tr>
+		    <tr>
+		        <td class="tableleft">所属课程id</td>
+		        <td><input type="text" name="course_id"/></td>
 		    </tr>
 		    <tr>
 		        <td class="tableleft"></td>

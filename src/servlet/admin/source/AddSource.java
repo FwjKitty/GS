@@ -39,6 +39,7 @@ public class AddSource extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Sources source = new Sources();
 		
+		String title = "";
 		String filename = null;
 		//设置保存上传文件的目录
 		String uploadDir = getServletContext().getRealPath("/file/source");
@@ -83,14 +84,13 @@ public class AddSource extends HttpServlet {
 				request.setAttribute(fieldName, content1);
 			} else {
 				try {
-					String fileName = "";
-					fileName = fi.getName();
+					title = fi.getName();
 					/*如果用户没有在FORM表单的文件字段中选择任何文件，那么忽略对该字段项的处理*/
-					if (fileName.equals("")) {
+					if (title.equals("")) {
 						continue;
 					}
 					
-					String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1);
+					String fileExt = title.substring(title.lastIndexOf(".") + 1);
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmssSSS");
 					String middlename = sdf.format(new Date(System.currentTimeMillis()));
 					String lastname = Math.round(Math.random() * 1000) + "";
@@ -110,8 +110,10 @@ public class AddSource extends HttpServlet {
 		}
 		filename = "file\\source\\"+filename;
 		String kind = (String)request.getAttribute("kind");
+		source.setTitle(title);
 		source.setFileName(filename);
-		source.setUn((String) request.getAttribute("un"));
+		source.setUn((String) request.getSession().getAttribute("un"));
+		source.setCourse_id(Integer.parseInt((String)request.getAttribute("course_id")));
 		source.setTime(new Date(System.currentTimeMillis()));
 		int result = Source.add(source,kind);
 		if (result > 0) {

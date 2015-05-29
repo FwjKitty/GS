@@ -28,9 +28,8 @@ int count = Integer.parseInt((String)request.getAttribute("count"));
 <html>
   <head>
     <base href="<%=basePath%>">
-    
     <title></title>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -40,7 +39,6 @@ int count = Integer.parseInt((String)request.getAttribute("count"));
     <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" type="text/css" href="admin/Css/style.css" />
     <script type="text/javascript" src="admin/Js/jquery.js"></script>
-    <script type="text/javascript" src="admin/Js/jquery.sorted.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="admin/Js/ckform.js"></script>
     <script type="text/javascript" src="admin/Js/common.js"></script>
@@ -70,40 +68,44 @@ int count = Integer.parseInt((String)request.getAttribute("count"));
     	<button type="button" class="btn btn-success" onclick="document.location='admin/user/addUser.jsp';">新增用户</button>
 	</form>
 	<table class="table table-bordered table-hover definewidth m10">
-    	<thead>
+    	<thead width="200">
     		<tr>
         		<th>用户id</th>
 		        <th>用户帐号</th>
-		        <th>帐号密码</th>
 		        <th>用户名称</th>
 		        <th>头像</th>
 		        <th>联系方式</th>
 		        <th>个人简介</th>
+		        <th>学历</th>
+		        <th>性别</th>
 		        <th>时间</th>
 		        <th>操作</th>
     		</tr>
     	</thead>
+    	<tbody>
     	<%
     		Users user = new Users();
     		for(int i=0; i<list_user.size(); i++){
     			user = list_user.get(i);
     	%>
-	    <tr>
-	    	<td><%=i+1 %></td>
-           	<td><%=user.getUn() %></td>
-            <td><%=user.getPw() %></td>
-            <td><%=user.getName() %></td>
-            <td><%=user.getHead() %></td>
-            <td><%=user.getContact() %></td>
-            <td><%=user.getIntroduction() %></td>
-            <td><%=user.getTime() %></td>
-            <td>
-                <a href="FindUser?un=<%=user.getUn() %>">编辑</a>
-                <a href="DelUser?un=<%=user.getUn() %>">删除</a>
-            </td>
-        </tr>
+		    <tr>
+		    	<td><%=i+1 %></td>
+	           	<td><%=user.getUn() %></td>
+	            <td><%=user.getName() %></td>
+	            <td><%=user.getHead() %></td>
+	            <td><%=user.getContact() %></td>
+	            <td><%=user.getEducation() %></td>
+	            <td><%=user.getIntroduction() %></td>
+	            <td><%=user.getSex() %></td>
+	            <td><%=user.getTime() %></td>
+	            <td>
+	                <a href="FindUser?un=<%=user.getUn() %>">编辑</a>
+	                <a href="DelUser?un=<%=user.getUn() %>">删除</a>
+	            </td>
+	        </tr>
         <%} %>
-        <tfoot><tr ><td colspan="9">
+        </tbody>
+        <tfoot><tr ><td colspan="10">
         	<div class="inline pull-right page">
          		共<%=count %>条记录/当前第<%=_page %>/<%=(count+9)/10%> 页
          		<a href='FindAllUser?page=1'>首页</a>

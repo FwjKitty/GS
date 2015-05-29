@@ -33,13 +33,12 @@ public class DelCourse extends HttpServlet {
 		String id = request.getParameter("id");
 		String kind = request.getParameter("kind");
 		
-		Courses source = Course.queryById(Integer.parseInt(id), kind+"_course");
+		Courses course = Course.queryById(Integer.parseInt(id), kind+"_course");
 		int result = Course.delete(Integer.parseInt(id),kind+"_course");
 		
 		if(result > 0){
-			String filename = getServletContext().getRealPath(source.getFileName());
-			String image = getServletContext().getRealPath(source.getImage());
-			Course.delFile(filename, image);
+			String filename = getServletContext().getRealPath(course.getFileName());
+			Course.delFile(filename);
 			response.sendRedirect("FindAllCourse?page=1&kind="+kind);
 		}else{
 			out.print("<script>alert('删除失败，请重新删除！');history.go(-1);location.reload();</script>");

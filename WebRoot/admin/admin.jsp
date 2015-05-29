@@ -11,8 +11,8 @@ un = (String) session.getAttribute("un");
 <!DOCTYPE HTML>
 <html>
 	<head>
-	    <title>后台管理系统</title>
-	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <title>光数之家--后台管理系统</title>
+	    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	    <link href="admin/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
 	    <link href="admin/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
 	    <link href="admin/assets/css/main-min.css" rel="stylesheet" type="text/css" />
@@ -44,20 +44,20 @@ un = (String) session.getAttribute("un");
 <script type="text/javascript" src="admin/assets/js/bui-min.js"></script>
 <script type="text/javascript" src="admin/assets/js/common/main-min.js"></script>
 <script type="text/javascript" src="admin/assets/js/config-min.js"></script>
-<script>
+<script type="text/javascript">
 <!--
-$(function(){
     BUI.use('common/main',function(){
         var config = [{id:'1',menu:[{text:'系统管理',
-            items:[{id:'11',text:'课程描述管理',href:'FindAllDescription?page=1'},
-                   {id:'12',text:'总体课程管理',href:'FindAllGuideCourse?page=1'},
-                   {id:'13',text:'用户管理',href:'FindAllUser?page=1'},
-                   {id:'14',text:'问答管理',href:'FindAllQuestion?page=1'},
-                   {id:'15',text:'公告管理',href:'FindAllNotice?page=1'}]}]},
+            items:[{id:'11',text:'用户管理',href:'FindAllUser?page=1'},
+                   {id:'12',text:'问答管理',href:'FindAllQuestion?page=1'},
+                   {id:'13',text:'公告管理',href:'FindAllNotice?page=1'},
+                   {id:'14',text:'评论/回复管理',href:'FindAllComment?page=1'}]}]},
             {id:'2',menu:[{text:'课程管理',
-            items:[{id:'21',text:'MySQL',href:'FindAllCourse?page=1&kind=mysql'},
-                   {id:'22',text:'SQLServer',href:'FindAllCourse?page=1&kind=sqlserver'},
-                   {id:'23',text:'Oracle',href:'FindAllCourse?page=1&kind=oracle'}]}]},
+            items:[{id:'21',text:'课程描述管理',href:'FindAllDescription?page=1'},
+                   {id:'22',text:'总体课程管理',href:'FindAllGuideCourse?page=1'},
+                   {id:'23',text:'MySQL',href:'FindAllCourse?page=1&kind=mysql'},
+                   {id:'24',text:'SQLServer',href:'FindAllCourse?page=1&kind=sqlserver'},
+                   {id:'25',text:'Oracle',href:'FindAllCourse?page=1&kind=oracle'}]}]},
         	{id:'3',menu:[{text:'资源管理',
             items:[{id:'31',text:'MySQL',href:'FindAllSource?page=1&kind=mysql_source'},
                    {id:'32',text:'SQLServer',href:'FindAllSource?page=1&kind=sqlserver_source'},
@@ -66,7 +66,6 @@ $(function(){
             modulesConfig : config
         });
     });
-});
 -->
 </script>
 <div style="text-align:center;">

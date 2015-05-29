@@ -24,13 +24,15 @@ public class Source {
 		int totalPage = pageSize * (page - 1);
 		try {
 			Statement cs = conn.createStatement();
-			ResultSet rs = cs.executeQuery("select * from " + table_name + " order by time desc limit "+totalPage+","+pageSize);
+			ResultSet rs = cs.executeQuery("select * from " + table_name + " order by id asc limit "+totalPage+","+pageSize);
 			while(rs.next()){
 				Sources source = new Sources();
 				
 				source.setId(rs.getInt("id"));
+				source.setTitle(rs.getString("title"));
 				source.setFileName(rs.getString("fileName"));
 				source.setUn(rs.getString("un"));
+				source.setCourse_id(rs.getInt("course_id"));
 				source.setTime(rs.getDate("time"));
 				
 				list_source.add(source);
@@ -62,6 +64,26 @@ public class Source {
 		return result;
 	}
 	
+	public static int getCountByUn(String un) {
+		Connection conn = ConnectionGS.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement("select count(*) from mysql_source,sqlserver_source,oracle_source " +
+					"where mysql_source.un="+un+" and sqlserver_source.un="+un+" and oracle_source.un="+un);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
+		}
+		return result;
+	}
+	
 	/**
 	 * 添加资源，所以还要通过king的值来确定数据表
 	 * @param source
@@ -71,7 +93,7 @@ public class Source {
 	public static int add(Sources source, String kind){
 		Connection conn = ConnectionGS.getConnection();
 		int result = 0;
-		String sql = "insert into " + kind + "(id,fileName,un,time) values(?,?,?,?)";
+		String sql = "insert into " + kind + "(id,fileName,un,time,course_id,title) values(?,?,?,?,?,?)";
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sql);
@@ -79,7 +101,8 @@ public class Source {
 			ps.setString(2, source.getFileName());
 			ps.setString(3, source.getUn());
 			ps.setDate(4, source.getTime());
-			
+			ps.setInt(5, source.getCourse_id());
+			ps.setString(6, source.getTitle());
 			result = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -101,6 +124,38 @@ public class Source {
 			Statement cs = conn.createStatement();
 			result = cs.executeUpdate("delete from " + kind + " where id='" + id + "'");
 			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
+		}
+		return result;
+	}
+
+	public static int userDelete(int id,String filename){
+		int result = 0;
+		String table_name[] = {"mysql_source","sqlserver_source","oracle_source"};
+		Connection conn = ConnectionGS.getConnection();
+		try {
+			Statement cs = conn.createStatement();
+			String name;
+			String sql;
+			ResultSet rs;
+			for(int i=0; i<3; i++){
+				name = table_name[i];
+				sql = "select * from " + name + " where id='" + id + "'";
+				rs = cs.executeQuery(sql);
+				while(rs.next()){
+					Sources source = new Sources();
+					source.setId(rs.getInt("id"));
+					source.setFileName(rs.getString("fileName"));
+					source.setKind(name);
+					if(source.getFileName().equals(filename)){
+						result = cs.executeUpdate("delete from " + name + " where id='" + source.getId() + "'");
+						return result;
+					}
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -133,8 +188,10 @@ public class Source {
 			
 			while(rs.next()){
 				source.setId(rs.getInt("id"));
+				source.setTitle(rs.getString("title"));
 				source.setFileName(rs.getString("fileName"));
 				source.setUn(rs.getString("un"));
+				source.setCourse_id(rs.getInt("course_id"));
 				source.setTime(rs.getDate("time"));
 			}
 		} catch (SQLException e) {
@@ -145,27 +202,55 @@ public class Source {
 		return source;
 	}
 	
+	public static List<Sources> queryByCourseId(int course_id,String kind){
+		List<Sources> list = new ArrayList<Sources>();
+		Connection conn = ConnectionGS.getConnection();
+		try {
+			Statement cs = conn.createStatement();
+			ResultSet rs = cs.executeQuery("select * from " + kind + " where course_id='" + course_id + "'");
+			
+			while(rs.next()){
+				Sources source = new Sources();
+				source.setId(rs.getInt("id"));
+				source.setTitle(rs.getString("title"));
+				source.setFileName(rs.getString("fileName"));
+				source.setUn(rs.getString("un"));
+				source.setCourse_id(rs.getInt("course_id"));
+				source.setTime(rs.getDate("time"));
+				
+				list.add(source);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionGS.close();
+		}
+		return list;
+	}
+	
 	/**
 	 * 通过上传文件的用户查找
 	 * @param un
 	 * @return
 	 */
-	public static List<Sources> queryByUn(String un){
+	public static List<Sources> queryByUn(String un, int page, int pageSize){
 		Connection conn = ConnectionGS.getConnection();
 		List<Sources> list_source = new ArrayList<Sources>();
-		
+		int totalPage = pageSize * (page - 1);
 		try {
 			Statement stmt = conn.createStatement();
 			String sql = "select * from mysql_source where un='" + un + "' UNION ALL " +
 					"select * from sqlserver_source where un='" + un + "' UNION ALL " +
-					"select * from oracle_source where un='" + un + "' order by time desc";
+					"select * from oracle_source where un='" + un + "' order by id asc limit "+totalPage+","+pageSize;
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				Sources source = new Sources();
 
 				source.setId(rs.getInt("id"));
+				source.setTitle(rs.getString("title"));
 				source.setFileName(rs.getString("fileName"));
 				source.setUn(rs.getString("un"));
+				source.setCourse_id(rs.getInt("course_id"));
 				source.setTime(rs.getDate("time"));
 				
 				list_source.add(source);
@@ -192,14 +277,16 @@ public class Source {
 			Statement stmt = conn.createStatement();
 			String sql = "select * from mysql_course UNION ALL " +
 					"select * from sqlserver_course UNION ALL " +
-					"select * from oracle_course order by time desc";
+					"select * from oracle_course";
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				Sources source = new Sources();
 
 				source.setId(rs.getInt("id"));
+				source.setTitle(rs.getString("title"));
 				source.setFileName(rs.getString("fileName"));
 				source.setUn(rs.getString("un"));
+				source.setCourse_id(rs.getInt("course_id"));
 				source.setTime(rs.getDate("time"));
 				
 				list_source.add(source);
@@ -222,13 +309,15 @@ public class Source {
 	public static int update(Sources source,int id,String kind){
 		int result = 0;
 		Connection conn = ConnectionGS.getConnection();
-		String sql = "update " + kind + " set fileName=?,un=?,time=? where id=?";
+		String sql = "update " + kind + " set fileName=?,un=?,time=?,course_id=?,title=? where id=?";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, source.getFileName());
 			ps.setString(2, source.getUn());
 			ps.setDate(3, source.getTime());
-			ps.setInt(4, id);
+			ps.setInt(4, source.getCourse_id());
+			ps.setString(5, source.getTitle());
+			ps.setInt(6, id);
 			
 			result = ps.executeUpdate();
 		} catch (SQLException e) {

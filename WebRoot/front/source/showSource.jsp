@@ -24,7 +24,7 @@ String kind = (String)request.getAttribute("kind");
 <html>
 <head>
 	<base href="<%=basePath %>">
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>光数之家</title>
 	<link href="css/bootstrap.css" rel="stylesheet">
@@ -53,14 +53,14 @@ String kind = (String)request.getAttribute("kind");
 						<li class="divider-vertical"><a href="Main">首页</a></li>
           				<li class="divider-vertical active"><a href="UserGetAllGuideCourse?page=1&name=mysql">学习课程</a></li>
           				<li class="divider-vertical"><a href="UserGetAllQuestion?page=1">技术问答</a></li>
-		  				<li class="divider-vertical"><a href="UserGetPerson">个人中心</a></li>
+		  				<li class="divider-vertical"><a href="UserGetPerson?title=person">个人中心</a></li>
        				</ul>
 					<form class="navbar-search ">
 						<input type="text" class="search-query span10" placeholder="Search">
 					</form>
 					<ul class="nav pull-right">
             			<li><p><a href="jsp/main/person.jsp">
-          					<img class="img-circle" data-src="holder.js/50x50" alt="50x50" style="width: 50px; height: 50px;" src="head/<%=user.getHead() %>">
+          					<img class="img-circle" data-src="holder.js/50x50" alt="50x50" style="width: 50px; height: 50px;" src="<%=user.getHead() %>">
           				</a></p></li>
           				<li class="divider-vertical"></li>
           				<li>
@@ -81,7 +81,7 @@ String kind = (String)request.getAttribute("kind");
   			<h4>用户注册</h4>
   		</div>
   		<div class="modal-body">
-  			<form class="form-horizontal" action="UserRegister" method="post" id="form_register">
+  			<form class="form-horizontal" action="UserRegister" method="post" onsubmit="return RSARegister()" id="form_register">
     			<div class="control-group warning">
       				<label class="control-label" ><strong>邮箱帐号</strong></label>
       				<div class="controls">
@@ -120,59 +120,56 @@ String kind = (String)request.getAttribute("kind");
 		<div class="row-fluid">
 			<div class="span2">
 				<ul class="nav nav-tabs nav-stacked" >
-					<li><a><h4 class="muted">数据库课程</h4></a></li>
-					<li>
-           				<a href="UserGetAllCourse?page=1&kind=mysql">MySOL</a>
-           			</li>
-           			<li>
-           				<a href="UserGetAllCourse?page=1&kind=sqlserver">SQLServer</a>
-           			</li>
-           			<li>
-           				<a href="UserGetAllCourse?page=1&kind=oracle">Oracle</a>
-           			</li>
 					<li><a><h4 class="muted">数据库资料</h4></a></li>
 					<li class="">
-           				<a href="UserGetAllSource?page=1&kind=mysql_source" data-toggle="modal">MySOL</a>
+           				<a href="UserGetAllSource?page=1&kind=mysql_source">MySOL</a>
            			</li>
            			<li>
-           				<a href="UserGetAllSource?page=1&kind=sqlserver_source" data-toggle="modal">SQLServer</a>
+           				<a href="UserGetAllSource?page=1&kind=sqlserver_source">SQLServer</a>
            			</li>
            			<li>
-           				<a href="UserGetAllSource?page=1&kind=oracle_source" data-toggle="modal">Oracle</a>
+           				<a href="UserGetAllSource?page=1&kind=oracle_source">Oracle</a>
            			</li>
-					<li><a><h4 class="muted">其他资料</h4></a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
 				</ul>
 			</div>
 			<div class="span10">	
 				<div class="row-fluid">
-				<%
-					Sources source = new Sources();
-					for(int i=0; i<list_source.size(); i++){
-						source = list_source.get(i);
-						Users u = User.queryByUn(source.getUn());
-				%>
-					<div class="ih-item circle effect1">
-						<a href="UserGetSource?kind=<%=kind %>">
-							<div class="spinner"></div>
-							<div class="img"><img src="<%=u.getHead() %>" alt="光数之家"></div>
-							<div class="info">
-								<div class="info-back">
-									<h3><%=source.getFileName() %></h3>
-									<p>111</p>
-								</div>
-							</div>
-						</a>
+					<table class="table table-striped table-hover">
+					  <thead>
+						<tr>
+						  <th>#</th>
+						  <th>文件</th>
+						  <th>发表日期</th>
+						  <th>操作</th>
+						</tr>
+					  </thead>
+					  <tbody>
+					  <%
+						Sources source = new Sources();
+						for(int i=0; i<list_source.size(); i++){
+							source = list_source.get(i);
+							Users u = User.queryByUn(source.getUn());
+					  %>
+						<tr>
+						  <td><%=i+1 %></td>
+						  <td><%=source.getFileName() %></td>
+						  <td><%=source.getTime() %></td>
+						  <td>
+						 	<a href="front/documentViewer.jsp?filename=<%=source.getFileName() %>" target="_blank" class="btn btn-danger btn-small">查看</a>
+						 	<a href="UserDownload?filename=<%=source.getFileName()%>" class="btn btn-inverse btn-small" >下载</a>
+						  </td>
+						</tr>
+					  <%} %>
+					  </tbody>
+					</table>
+					<div class="pagination pull-right">
+						<ul>
+							<li><a href="UserGetPerson?page=<%=lastpage %>&title=resource">Prev</a></li>
+							<li><a href="UserGetPerson?page=1&title=resource">First</a></li>
+							<li><a href="UserGetPerson?page=<%=finalpage %>&title=resource">Final</a></li>
+							<li><a href="UserGetPerson?page=<%=nextpage %>&title=resource">Next</a></li>
+						</ul>
 					</div>
-				<%} %>
-				</div> 
-				<div class="row-fluid">
-					<ul class="pager pull-left">
-						<li><a href="UserGetAllSource?page=<%=lastpage %>&kind=<%=kind %>">上一页</a></li>
-						<li><a href="UserGetAllSource?page=<%=nextpage %>&kind=<%=kind %>">下一页</a></li>
-					</ul>
 				</div>
 			</div>
 		</div>
@@ -182,18 +179,13 @@ String kind = (String)request.getAttribute("kind");
 	<!-- footer end -->
 	<script src="js/jquery-2.1.1.min.js"></script> 
 	<script src="js/bootstrap.js"></script>
+	<!-- RSA -->
+	<script type="text/javascript" src="js/RSA/RSA.js"></script>
+	<script type="text/javascript" src="js/RSA/BigInt.js"></script>
+	<script type="text/javascript" src="js/RSA/Barrett.js"></script>
 	<script>
 	<!--
 	$(function(){
-		$(".section ul li .rsp").hide();
-		$(".section	 ul li").hover(function(){
-			$(this).find(".rsp").stop().fadeTo(500,0.5)
-			$(this).find(".text").stop().animate({left:'0'}, {duration: 500})
-		},function(){
-			$(this).find(".rsp").stop().fadeTo(500,0)
-			$(this).find(".text").stop().animate({left:'318'}, {duration: "fast"})
-			$(this).find(".text").animate({left:'-318'}, {duration: 0})
-		});
 		$("#exit").click(function(){
 			if(confirm("您确认要退出当前用户?")){
 				window.location.href="Exit";
@@ -204,9 +196,32 @@ String kind = (String)request.getAttribute("kind");
 			alert($('#imgVcodeRegister').src);
 			$("#errorRegister").load("Checkcode",{vcode:$("#vcodeRegister").val(),operation:"register"});
 			});
-		$("#loginButton").click(function(){
-			$("#errorLogin").load("Checkcode",{vcode:$("#vcodeLogin").val(),operation:"login"});
-			});
+		var key;
+		function RSARegister(){
+			var register = document.getElementById("form_register");
+			if (register.un.value == "") {
+				alert("帐号不能为空");
+				register.un.focus();
+				return false;
+			} else if (register.pw.value == "") {
+				alert("密码不能为空");
+				register.pw.focus();
+				return false;
+			} else if (register.pw2.value == "") {
+				alert("密码不能为空");
+				register.pw2.focus();
+				return false;
+			} else {
+				if(register.pw.value == register.pw2.value){
+					bodyRSA();
+					register.pw.value = encryptedString(key, encodeURIComponent(register.pw.value));
+					return true;
+				}else{
+					alert("密码不一致");
+					return false;
+				}
+			}
+		}
 	});
 	-->
 	</script>

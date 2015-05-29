@@ -29,9 +29,8 @@ String kind = (String)request.getAttribute("kind");
 <html>
   <head>
     <base href="<%=basePath%>">
-    
     <title></title>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -41,7 +40,6 @@ String kind = (String)request.getAttribute("kind");
     <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" type="text/css" href="admin/Css/style.css" />
     <script type="text/javascript" src="admin/Js/jquery.js"></script>
-    <script type="text/javascript" src="admin/Js/jquery.sorted.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="admin/Js/ckform.js"></script>
     <script type="text/javascript" src="admin/Js/common.js"></script>
@@ -74,8 +72,10 @@ String kind = (String)request.getAttribute("kind");
     	<thead>
     		<tr>
         		<th>资源id</th>
-		        <th>资源路径</th>
+        		<th>资源标题</th>
+		        <th>资源文件</th>
 		        <th>管理员名称</th>
+		        <th>所属总体课程id</th>
 		        <th>时间</th>
 		        <th>操作</th>
     		</tr>
@@ -86,9 +86,11 @@ String kind = (String)request.getAttribute("kind");
     			source = list_source.get(i);
     	%>
 	    <tr>
-           	<td><%=i+1 %></td>
+           	<td><%=source.getId() %></td>
+           	<td><%=source.getTitle() %></td>
             <td><%=source.getFileName() %></td>
             <td><%=source.getUn() %></td>
+            <td><%=source.getCourse_id() %></td>
             <td><%=source.getTime() %></td>
             <td>
                 <a href="FindSource?id=<%=source.getId() %>&kind=<%=kind %>">编辑</a>
@@ -96,7 +98,7 @@ String kind = (String)request.getAttribute("kind");
             </td>
         </tr>
         <%} %>
-        <tfoot><tr ><td colspan="5">
+        <tfoot><tr ><td colspan="7">
         	<div class="inline pull-right page">
          		共<%=count %>条记录/当前第<%=_page %>/<%=(count+9)/10%> 页
          		<a href='FindAllSource?page=1&kind=<%=kind %>'>首页</a>

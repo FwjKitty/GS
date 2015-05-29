@@ -33,6 +33,7 @@ public class UserLogin extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String un = "";
 		String pw = "";
+		String pw2 = "";
 		
 		//获取验证码
 		String valcode = request.getSession().getAttribute("valcode").toString();
@@ -45,10 +46,20 @@ public class UserLogin extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			
 			un = (String) request.getParameter("un");
+			//密码解密
 			pw = (String) request.getParameter("pw");
 			Users user = User.queryByUn(un);
+			pw2 = user.getPw();
+			/*try {
+				pw = RSAUtil.decrypt(RSAUtil.getKeyPair().getPrivate(),
+						pw.getBytes());
+				pw2 = RSAUtil.decrypt(RSAUtil.getKeyPair().getPrivate(),
+						user.getPw().getBytes());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}*/
 			if(user.getUn() != null){
-				if(pw.equals(user.getPw())){
+				if(pw.equals(pw2)){
 					List<Descriptions> list_description = Description.queryAll();
 					session.setAttribute("user", user);
 					request.setAttribute("list_description", list_description);

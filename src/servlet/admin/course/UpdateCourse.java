@@ -40,7 +40,6 @@ public class UpdateCourse extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String file = null;
-		String image = null;
 		// 设置保存上传文件的目录
 		String uploadDir = getServletContext().getRealPath("/file/course");
 		if (uploadDir == null) {
@@ -101,11 +100,7 @@ public class UpdateCourse extends HttpServlet {
 					String lastname = Math.round(Math.random() * 1000) + "";
 					String localFileName = middlename + lastname + "." + fileExt;
 					fi.write(new File(uploadDir, localFileName));
-					if(fi.getFieldName().equals("filename")){
-						file = "file\\course\\"+localFileName;
-					}else if(fi.getFieldName().equals("image")){
-						image = "file\\course\\"+localFileName;
-					}
+					file = "file\\course\\"+localFileName;
 				} catch (Exception e) {
 					out.println("<script language='javascript'>alert('修改失败!请按要求修改');window.location.href='GetClubs?id='"+(String) request.getAttribute("id")+"';</script>");
 					return;
@@ -127,28 +122,16 @@ public class UpdateCourse extends HttpServlet {
 			} else
 				System.out.println("很抱歉,发生不可预料错误,您的文件删除操作没能成功! ");
 		}
-		if(image == null){
-			image = (String) request.getAttribute("image");
-		}else{
-			String path = (String) request.getAttribute("image");
-			String path1 = getServletContext().getRealPath(path);
-			File file1 = new File(path1);
-			if (file1.exists()) {
-				file1.delete();
-				System.out.println("删除资源文件完成！");
-			} else
-				System.out.println("很抱歉,发生不可预料错误,您的文件删除操作没能成功! ");
-		}
 		
 		String id = (String) request.getAttribute("id");
 		String kind = (String) request.getAttribute("kind");
 		Courses course = new Courses();
-		course.setName((String)request.getAttribute("name"));
+		course.setTitle((String)request.getAttribute("title"));
 		course.setIntroduction((String)request.getAttribute("introduction"));
 		course.setFileName(file);
-		course.setImage(image);
 		course.setUn((String) request.getAttribute("un"));
 		course.setTime(new Date(System.currentTimeMillis()));
+		course.setCourse_id(Integer.parseInt((String) request.getAttribute("course_id")));
 		int result = Course.update(course, Integer.parseInt(id), kind+"_course");
 		if(result != 0){
 			response.sendRedirect("FindAllCourse?page=1&kind="+kind);

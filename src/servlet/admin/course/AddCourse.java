@@ -39,7 +39,6 @@ public class AddCourse extends HttpServlet {
 		Courses course = new Courses();
 		
 		String file = null;
-		String image = null;
 		//设置保存上传文件的目录
 		String uploadDir = getServletContext().getRealPath("/file/course");
 		if (uploadDir == null) {
@@ -95,11 +94,7 @@ public class AddCourse extends HttpServlet {
 					String lastname = Math.round(Math.random() * 1000) + "";
 					String localFileName = middlename + lastname + "." + fileExt;
 					fi.write(new File(uploadDir, localFileName));
-					if(fi.getFieldName().equals("filename")){
-						file = "file\\course\\"+localFileName;
-					}else if(fi.getFieldName().equals("image")){
-						image = "file\\course\\"+localFileName;
-					}
+					file = "file\\course\\"+localFileName;
 				}catch (Exception e) {
 					out.println("<script language='javascript'>alert('存储文件时出现错误！');history.go(-1);</script>");
 					return;
@@ -110,15 +105,15 @@ public class AddCourse extends HttpServlet {
 			}
 		}
 		String kind = (String)request.getAttribute("kind");
-		course.setName((String)request.getAttribute("name"));
+		course.setTitle((String)request.getAttribute("title"));
 		course.setIntroduction((String)request.getAttribute("introduction"));
 		course.setFileName(file);
-		course.setImage(image);
 		course.setUn((String) request.getAttribute("un"));
 		course.setTime(new Date(System.currentTimeMillis()));
+		course.setCourse_id(Integer.parseInt((String) request.getAttribute("course_id")));
 		int result = Course.add(course,kind+"_course");
 		if (result > 0) {
-			request.getRequestDispatcher("FindAllCourse?page=1&kind="+kind).forward(request, response);
+			response.sendRedirect("FindAllCourse?page=1&kind="+kind);
 		} else {
 			out.println("<script language='javascript'>alert('添加失败，请重新添加！');history.go(-1);</script>");
 		}

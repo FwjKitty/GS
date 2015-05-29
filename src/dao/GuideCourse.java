@@ -89,7 +89,7 @@ public class GuideCourse {
 		List<GuideCourses> list_guideCourse = new ArrayList<GuideCourses>();
 		try {
 			Statement cs = conn.createStatement();
-			ResultSet rs = cs.executeQuery("select * from course order by id desc limit "+totalPage+","+pageSize);
+			ResultSet rs = cs.executeQuery("select * from course order by id asc limit "+totalPage+","+pageSize);
 			
 			while(rs.next()){
 				GuideCourses guideCourse = new GuideCourses();
@@ -133,7 +133,7 @@ public class GuideCourse {
 		List<GuideCourses> list_guideCourse = new ArrayList<GuideCourses>();
 		try {
 			Statement cs = conn.createStatement();
-			ResultSet rs = cs.executeQuery("select * from course where name='"+name+"' order by id desc limit "+totalPage+","+pageSize);
+			ResultSet rs = cs.executeQuery("select * from course where name='"+name+"' order by id asc limit "+totalPage+","+pageSize);
 			
 			while(rs.next()){
 				GuideCourses guideCourse = new GuideCourses();

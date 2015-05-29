@@ -11,7 +11,7 @@ List<Descriptions> list_description = (List)request.getAttribute("list_descripti
 <html>
 <head>
 	<base href="<%=basePath%>">
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>光数之家</title>
 	<link href="css/bootstrap.css" rel="stylesheet">
@@ -40,17 +40,15 @@ List<Descriptions> list_description = (List)request.getAttribute("list_descripti
 			            <li class="divider-vertical active"><a href="Main">首页</a></li>
 			            <li class="divider-vertical"><a href="UserGetAllGuideCourse?page=1&name=mysql">学习课程</a></li>
 			            <li class="divider-vertical"><a href="UserGetAllQuestion?page=1">技术问答</a></li>
-						<li class="divider-vertical"><a href="UserGetPerson">个人中心</a></li>
+						<li class="divider-vertical"><a href="UserGetPerson?title=person">个人中心</a></li>
 		          	</ul>
 		        	<form class="navbar-search ">
 						<input type="text" class="search-query span10" placeholder="Search">
 					</form>
 		         	 <ul class="nav pull-right">
-			            <li><p>
-			          		<a href="jsp/main/person.jsp">
-			          			<img class="img-circle" data-src="holder.js/50x50" alt="50x50" style="width: 50px; height: 50px;" src="head/<%=user.getHead() %>">
-			          		</a>
-			          	</p></li>
+			            <li><p><a href="jsp/main/person.jsp">
+          					<img class="img-circle" data-src="holder.js/50x50" alt="50x50" style="width: 50px; height: 50px;" src="<%=user.getHead() %>">
+          				</a></p></li>
 			          	<li class="divider-vertical"></li>
 			          	<li>
 			          		<p><a href="jsp/main/person.jsp"><%=user.getUn() %></a></p>
@@ -70,7 +68,7 @@ List<Descriptions> list_description = (List)request.getAttribute("list_descripti
   			<h4>用户注册</h4>
   		</div>
   		<div class="modal-body">
-  			<form class="form-horizontal" action="UserRegister" method="post">
+  			<form class="form-horizontal" onsubmit="RSARegister()" action="UserRegister" method="post" id="form_register">
     			<div class="control-group">
       				<label class="control-label" ><strong>邮箱帐号</strong></label>
       				<div class="controls">
@@ -161,6 +159,36 @@ List<Descriptions> list_description = (List)request.getAttribute("list_descripti
 			alert($('#imgVcodeRegister').src);
 			$("#errorRegister").load("Checkcode",{vcode:$("#vcodeRegister").val(),operation:"register"});
 			});
+		var key ;
+		function bodyRSA(){
+			setMaxDigits(130);
+		  	key = new RSAKeyPair("10001","","918679b54b714e8c78e30081be1ee4a35e153051047a4324298ab48ee530cec099d754a1b6fb83929ba93a0bea7ac4ede200f7bcf05cc80365ade290d8a6c2a701bb5322bf0f0b9ec060ea7597e255ff60d71156ec350d054092334b3847619c1810ecc00d20ee79abf2c068e894e2002ad2c3d4a365e0b8ad6bb8e20b888edd"); 
+		}
+		function RSARegister(){
+			var register = document.getElementById("form_register");
+			if (register.un.value == "") {
+				alert("帐号不能为空");
+				register.un.focus();
+				return false;
+			} else if (register.pw.value == "") {
+				alert("密码不能为空");
+				register.pw.focus();
+				return false;
+			} else if (register.pw2.value == "") {
+				alert("密码不能为空");
+				register.pw2.focus();
+				return false;
+			} else {
+				if(register.pw.value == register.pw2.value){
+					bodyRSA();
+					register.pw.value = encryptedString(key, encodeURIComponent(register.pw.value));
+					return true;
+				}else{
+					alert("密码不一致");
+					return false;
+				}
+			}
+		}
 	});
 	-->
 	</script>

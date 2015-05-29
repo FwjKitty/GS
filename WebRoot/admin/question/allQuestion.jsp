@@ -28,9 +28,8 @@ int count = Integer.parseInt((String)request.getAttribute("count"));
 <html>
   <head>
     <base href="<%=basePath%>">
-    
     <title></title>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -40,7 +39,6 @@ int count = Integer.parseInt((String)request.getAttribute("count"));
     <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" type="text/css" href="admin/Css/style.css" />
     <script type="text/javascript" src="admin/Js/jquery.js"></script>
-    <script type="text/javascript" src="admin/Js/jquery.sorted.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="admin/Js/ckform.js"></script>
     <script type="text/javascript" src="admin/Js/common.js"></script>
@@ -87,7 +85,7 @@ int count = Integer.parseInt((String)request.getAttribute("count"));
     			question = list_question.get(i);
     	%>
 	    <tr>
-           	<td><%=i+1 %></td>
+           	<td><%=question.getId() %></td>
             <td><%=question.getQuestion() %></td>
             <td><%=question.getAnswer() %></td>
             <td><%=question.getUn() %></td>

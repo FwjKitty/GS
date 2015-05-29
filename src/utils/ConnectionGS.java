@@ -8,9 +8,9 @@ public class ConnectionGS {
 	
 	private static Connection conn = null;
 	private static String clazz = "com.mysql.jdbc.Driver";
-	private static String url = "jdbc:mysql://localhost:3306/GS?characterEncoding=UTF8";
-	private static String user = "root";
-	private static String password = "";
+	private static String url = "jdbc:mysql://localhost:3306/gs?characterEncoding=UTF8";
+	private static String user = "gs_f";
+	private static String password = "fwjlqhhzr";
 	
 	public static Connection getConnection(){
 		try {

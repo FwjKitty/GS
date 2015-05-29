@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utils.DefaultData;
+
 import dao.Question;
 import dao.Source;
 
@@ -36,19 +38,33 @@ public class UserGetPerson extends HttpServlet {
 		u = (Users)request.getSession().getAttribute("user");
 		
 		if(u == null){
-			request.getRequestDispatcher("Main").forward(request, response);
+			response.sendRedirect("Main");
 		}else{
-			List<Questions> list_question = new ArrayList<Questions>();
+			String title = request.getParameter("title");
+			if(title.equals("person")){
+				request.getRequestDispatcher("front/person/showPerson.jsp").forward(request, response);
+			}else if(title.equals("question")){
+				List<Questions> list_question = new ArrayList<Questions>();
+				int page = Integer.parseInt(request.getParameter("page"));
+				int count = Question.getCountByUn(u.getUn());
+				list_question = Question.queryByUn(u.getUn(),page,DefaultData.pageSize_front);
+				request.setAttribute("list_question", list_question);
+				request.setAttribute("page", String.valueOf(page));
+				request.setAttribute("count", String.valueOf(count));
+				request.getRequestDispatcher("front/person/showQuestion.jsp").forward(request, response);
+			}else if(title.equals("resource")){
+				List<Sources> list_source = new ArrayList<Sources>();
+				int page = Integer.parseInt(request.getParameter("page"));
+				int count = Source.getCountByUn(u.getUn());
+				list_source = Source.queryByUn(u.getUn(), page, DefaultData.pageSize_front);
+				request.setAttribute("list_source", list_source);
+				request.setAttribute("page", String.valueOf(page));
+				request.setAttribute("count", String.valueOf(count));
+				request.getRequestDispatcher("front/person/showResource.jsp").forward(request, response);
+			}
 			//List<Courses> list_course = new ArrayList<Courses>();
-			List<Sources> list_source = new ArrayList<Sources>();
-			
-			list_question = Question.queryByUn(u.getUn());
-			list_source = Source.queryByUn(u.getUn());
 			//list_course = Course.queryCourse();
-			request.setAttribute("list_question", list_question);
-			request.setAttribute("list_source", list_source);
 			//request.setAttribute("list_course", list_course);
-			request.getRequestDispatcher("front/person/showPerson.jsp").forward(request, response);
 		}
 	}
 }
